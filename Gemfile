@@ -7,6 +7,11 @@ gem 'rails', '6.0.3'
 gem 'rails-i18n'
 # bcrypt
 gem 'bcrypt', '3.1.13'
+# faker
+gem 'faker', '2.1.2'
+# pagination
+gem 'will_paginate', '3.1.8'
+gem 'bootstrap-will_paginate', '1.0.0'
 # bootstrap
 gem 'bootstrap-sass', '3.4.1'
 # Use Puma as the app server

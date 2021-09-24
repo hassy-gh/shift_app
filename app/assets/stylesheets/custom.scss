@@ -60,6 +60,14 @@ p {
 }
 
 /* header */
+header {
+  li {
+    a {
+      color: white;
+    }
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -72,10 +80,6 @@ p {
     color: white;
     text-decoration: none;
   }
-}
-
-li a {
-  color: white;
 }
 
 /* footer */
@@ -154,4 +158,19 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+    .delete {
+      float: right;
+    }
+  }
 }
