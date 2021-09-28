@@ -9,6 +9,7 @@
       <%= f.email_field :email, class: "form-control" %>
       
       <%= f.label :password, "パスワード" %>
+      <span style="float: right;">パスワードを忘れた方は<%= link_to "こちら", new_password_reset_path %></span>
       <%= f.password_field :password, class: "form-control" %>
       
       <%= f.label :remember_me, class: "checkbox inline" do %>
