@@ -5,8 +5,8 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
     
-      <%= f.label :employee_no, "従業員No（半角数字）" %>
-      <%= f.text_field :employee_no, class: "form-control" %>
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control" %>
       
       <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: "form-control" %>
