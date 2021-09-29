@@ -1,0 +1,2 @@
+module HopeShiftsHelper
+end

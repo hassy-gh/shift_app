@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.0.3'
+# simple-calendar
+gem 'simple_calendar', '~> 2.0'
 # japanese
 gem 'rails-i18n'
 gem 'mail-iso-2022-jp'
