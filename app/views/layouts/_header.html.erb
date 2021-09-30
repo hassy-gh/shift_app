@@ -13,6 +13,7 @@
               <% if current_user.admin? %>
                 <li><%= link_to "Users", users_path %></li>
               <% end %>
+              <li><%= link_to "hope_shift", new_hope_shift_path %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li>
