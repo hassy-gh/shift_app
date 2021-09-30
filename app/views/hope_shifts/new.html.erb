@@ -1,20 +1,12 @@
 <h1>テスト</h1>
 
-<%= form_with(model: @event, local: true) do |form| %>
+<%= form_with(model: @hope_shift, local: true) do |f| %>
 
-    <div class="time">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time %>
-  </div>
+  <%= f.label :start_time, "日付" %>
+  <%= f.datetime_select :start_time %>
+    
+  <%= f.label :content, "内容" %>
+  <%= f.text_field :content %>
 
-  <div class="content">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-
-
-  <div class="submit">
-    <%= form.submit %>
-  </div>
-
+  <%= f.submit "登録", class: "btn btn-primary" %>
 <% end %>

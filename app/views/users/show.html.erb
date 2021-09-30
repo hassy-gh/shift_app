@@ -8,6 +8,11 @@
     <%= link_to "シフト申請", new_hope_shift_path %>
     <%= month_calendar events: @hope_shifts do |date, hope_shifts| %>
       <%= date.day %>
+      <% hope_shifts.each do |hope_shift| %>
+        <div>
+          <%= hope_shift.content %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

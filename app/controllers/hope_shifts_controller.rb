@@ -1,7 +1,7 @@
 class HopeShiftsController < ApplicationController
   
   def new
-    @hope_shift = HopeShift.new
+    @hope_shift = current_user.hope_shifts.build
   end
   
   def create
