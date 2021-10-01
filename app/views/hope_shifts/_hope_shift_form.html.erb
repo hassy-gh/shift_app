@@ -1,0 +1,10 @@
+<%= form_with(model: @hope_shift, local: true) do |f| %>
+
+  <%= f.label :start_time, "日付" %>
+  <%= f.date_field :start_time, class: "form-control", value: @day %>
+    
+  <%= f.label :content, "内容" %>
+  <%= f.text_field :content, class: "form-control" %>
+
+  <%= f.submit "登録", class: "btn btn-primary" %>
+<% end %>

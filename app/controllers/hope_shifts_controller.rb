@@ -15,6 +15,20 @@ class HopeShiftsController < ApplicationController
     end
   end
   
+  def edit
+    @hope_shift = HopeShift.find(params[:id])
+  end
+  
+  def update
+    @hope_shift = HopeShift.find(params[:id])
+    if @hope_shift.update(hope_shift_params)
+      flash[:success] = "変更しました"
+      redirect_to current_user
+    else
+      render new
+    end
+  end
+  
   private
   
     def hope_shift_params

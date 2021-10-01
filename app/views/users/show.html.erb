@@ -8,7 +8,7 @@
     <%= link_to date.day, new_hope_shift_path(date) %>
     <% hope_shifts.each do |hope_shift| %>
       <div>
-        <%= hope_shift.content %>
+        <%= link_to hope_shift.content, edit_hope_shift_path(hope_shift) %>
       </div>
     <% end %>
   <% end %>

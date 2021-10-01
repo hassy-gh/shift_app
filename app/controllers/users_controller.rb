@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @hope_shifts = HopeShift.all
+    @hope_shifts = @user.hope_shifts.all
     redirect_to root_url and return unless @user.activated?
   end
   
