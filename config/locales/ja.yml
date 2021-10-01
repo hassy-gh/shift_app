@@ -2,10 +2,13 @@ ja:
   activerecord:
     models:
       user: 従業員
+      hope_shift: 希望シフト
     attributes:
       user:
         name: 名前
         email: メールアドレス
         employee_no: 従業員No
         password: パスワード
-        password_confirmation: パスワード確認用 
+        password_confirmation: パスワード確認用
+      hope_shift:
+        start_time: 日付

@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_233100) do
+ActiveRecord::Schema.define(version: 2021_10_01_053804) do
 
   create_table "hope_shifts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "content"
-    t.datetime "start_time"
+    t.date "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_hope_shifts_on_user_id"

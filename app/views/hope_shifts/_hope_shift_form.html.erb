@@ -1,4 +1,5 @@
 <%= form_with(model: @hope_shift, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :start_time, "日付" %>
   <%= f.date_field :start_time, class: "form-control", value: @day %>
