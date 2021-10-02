@@ -12,3 +12,11 @@ ja:
         password_confirmation: パスワード確認用
       hope_shift:
         start_time: 日付
+    errors:
+      models:
+        hope_shift:
+          attributes:
+            start_time:
+              format: "%{message}"
+              taken: この%{attribute}はすでに登録されています
+              blank: "%{attribute}を入力してください"

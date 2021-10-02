@@ -1,8 +1,9 @@
 class HopeShiftsController < ApplicationController
   
   def new
-    @hope_shift = current_user.hope_shifts.build
     @day = params[:format]
+    @hope_shift = current_user.hope_shifts.build
+    @hope_shifts = HopeShift.where(start_time: params[:format])
   end
   
   def create
@@ -25,7 +26,7 @@ class HopeShiftsController < ApplicationController
       flash[:success] = "変更しました"
       redirect_to current_user
     else
-      render new
+      render 'edit'
     end
   end
   

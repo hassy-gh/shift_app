@@ -1,10 +1,10 @@
 <header class="navbar navbar-fixed-top navbar-dark bg-primary">
   <div class="container">
-    <%= link_to "ShiftApp", root_path, id: "logo" %>
+    <span id="logo">ShiftApp</span>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
         <% if logged_in? %>
+          <li><%= link_to "Home", user_path(current_user) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Menu <b class="caret"></b>

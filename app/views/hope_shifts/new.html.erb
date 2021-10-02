@@ -1,4 +1,8 @@
 <% provide(:title, 'Hope shift') %>
+<% provide(:button_text, '登録') %>
 <h1>シフト申請</h1>
 
 <%= render 'hope_shift_form' %>
+<ul class="users">
+  <%= render @hope_shifts %>
+</ul>
