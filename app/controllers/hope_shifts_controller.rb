@@ -12,6 +12,7 @@ class HopeShiftsController < ApplicationController
       flash[:success] = "登録しました"
       redirect_to current_user
     else
+      @hope_shifts = HopeShift.where(start_time: params[:hope_shift][:start_time])
       render 'new'
     end
   end
