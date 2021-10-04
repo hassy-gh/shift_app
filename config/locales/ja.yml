@@ -20,3 +20,6 @@ ja:
               format: "%{message}"
               taken: この%{attribute}はすでに登録されています
               blank: "%{attribute}を入力してください"
+    time:
+      formats:
+        default: "%H:%M"

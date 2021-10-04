@@ -34,6 +34,6 @@ class HopeShiftsController < ApplicationController
   private
   
     def hope_shift_params
-      params.require(:hope_shift).permit(:content, :start_time)
+      params.require(:hope_shift).permit(:content, :start_time, :hope_start_time, :hope_end_time)
     end
 end
