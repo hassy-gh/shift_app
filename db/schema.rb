@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_065622) do
+ActiveRecord::Schema.define(version: 2021_10_05_233546) do
 
   create_table "hope_shifts", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2021_10_04_065622) do
     t.date "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.time "hope_start_time"
-    t.time "hope_end_time"
+    t.string "hope_start_time"
+    t.string "hope_end_time"
     t.index ["user_id"], name: "index_hope_shifts_on_user_id"
   end
 
