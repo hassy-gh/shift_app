@@ -11,9 +11,13 @@
         <% if hope_shift.content.present? %>
           <%= link_to hope_shift.content, edit_hope_shift_path(hope_shift) %>
         <% else %>
-          <%= link_to hope_shift.hope_start_time, edit_hope_shift_path(hope_shift) %>
+          <% if hope_shift.hope_start_time.present? %>
+            <%= link_to hope_shift.hope_start_time.strftime("%H:%M"), edit_hope_shift_path(hope_shift) %>
+          <% end %>
           ~
-          <%= link_to hope_shift.hope_end_time, edit_hope_shift_path(hope_shift) %>
+          <% if hope_shift.hope_end_time.present? %>
+            <%= link_to hope_shift.hope_end_time.strftime("%H:%M"), edit_hope_shift_path(hope_shift) %>
+          <% end %>
         <% end %>
       </div>
     <% end %>

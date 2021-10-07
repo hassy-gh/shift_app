@@ -12,6 +12,7 @@ ja:
         password_confirmation: パスワード確認用
       hope_shift:
         start_time: 日付
+        content_or_hope_time: F（×）または開始時間（終了時間）の
     errors:
       models:
         hope_shift:
@@ -20,6 +21,3 @@ ja:
               format: "%{message}"
               taken: この%{attribute}はすでに登録されています
               blank: "%{attribute}を入力してください"
-    time:
-      formats:
-        default: "%H:%M"

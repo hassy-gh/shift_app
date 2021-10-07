@@ -1,6 +1,14 @@
 <li>
   <%= hope_shift.user.name %>
-  <%= hope_shift.content %>
-  <%= hope_shift.hope_start_time %>
-  <%= hope_shift.hope_end_time %>
+  <% if hope_shift.content.present? %>
+    <%= hope_shift.content %>
+  <% else %>
+    <% if hope_shift.hope_start_time.present? %>
+      <%= hope_shift.hope_start_time.strftime("%H:%M") %>
+    <% end %>
+    ~
+    <% if hope_shift.hope_end_time.present? %>
+      <%= hope_shift.hope_end_time.strftime("%H:%M") %>
+    <% end %>
+  <% end %>
 </li>
