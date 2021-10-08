@@ -12,7 +12,7 @@ ja:
         password_confirmation: パスワード確認用
       hope_shift:
         start_time: 日付
-        content_or_hope_time: F（×）または開始時間（終了時間）の
+        content_or_hope_time: F（×）または開始時間（終了時間）
     errors:
       models:
         hope_shift:

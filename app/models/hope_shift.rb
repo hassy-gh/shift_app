@@ -4,13 +4,12 @@ class HopeShift < ApplicationRecord
   with_options on: :create do
     validates :start_time, uniqueness: { scope: :user_id }
   end
-  validate :required_either_content_or_time
+  validate :required_either_content_or_time, unless: -> { errors.any? }
 
   private
   
     def required_either_content_or_time
-      if content.present? ^ (hope_start_time.present? || hope_end_time.present?)
-        errors.add(:content_or_hope_time, "どちらか一方を入力してください")
-      end
+      return if content.present? ^ (hope_start_time.present? || hope_end_time.present?)
+      errors.add(:content, "のどちらかを入力してください")
     end
 end
