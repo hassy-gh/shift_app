@@ -1,5 +1,5 @@
 <li>
-  <%= link_to "#{user.name}(#{user.employee_no})", user %>
+  <%= user.name %>(<%=  user.employee_no %>)
   <% if current_user.admin? && !current_user?(user) %>
     <%= link_to "削除", user, class: "delete", method: :delete,
                                     data: { confirm: "本当に削除しますか？" } %>

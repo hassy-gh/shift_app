@@ -10,6 +10,6 @@ class HopeShift < ApplicationRecord
   
     def required_either_content_or_time
       return if content.present? ^ (hope_start_time.present? || hope_end_time.present?)
-      errors.add(:content, "のどちらかを入力してください")
+      errors.add(:content_or_hope_time, "のどちらかを入力してください")
     end
 end

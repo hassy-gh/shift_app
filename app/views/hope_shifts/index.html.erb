@@ -1,22 +1,20 @@
-<% provide(:title, @user.name) %>
-<h1>
-  <%= @user.name %>(<%= @user.employee_no %>)
-</h1>
+<% provide(:title, 'Hope shift') %>
+<h1>シフト申請</h1>
 
 <div>
   <%= month_calendar events: @hope_shifts do |date, hope_shifts| %>
-    <%= date.day %>
+    <%= link_to date.day, new_hope_shift_path(date) %>
     <% hope_shifts.each do |hope_shift| %>
       <div>
         <% if hope_shift.content.present? %>
-          <%= hope_shift.content %>
+          <%= link_to hope_shift.content, edit_hope_shift_path(hope_shift) %>
         <% else %>
           <% if hope_shift.hope_start_time.present? %>
-            <%= hope_shift.hope_start_time.strftime("%H:%M") %>
+            <%= link_to hope_shift.hope_start_time.strftime("%H:%M"), edit_hope_shift_path(hope_shift) %>
           <% end %>
           ~
           <% if hope_shift.hope_end_time.present? %>
-            <%= hope_shift.hope_end_time.strftime("%H:%M") %>
+            <%= link_to hope_shift.hope_end_time.strftime("%H:%M"), edit_hope_shift_path(hope_shift) %>
           <% end %>
         <% end %>
       </div>
