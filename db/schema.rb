@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_065622) do
+ActiveRecord::Schema.define(version: 2021_10_09_074450) do
+
+  create_table "fixed_shifts", force: :cascade do |t|
+    t.date "start_time"
+    t.time "fixed_start_time"
+    t.time "fixed_end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "hope_shifts", force: :cascade do |t|
     t.integer "user_id", null: false

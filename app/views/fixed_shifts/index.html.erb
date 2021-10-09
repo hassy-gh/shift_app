@@ -1,0 +1,19 @@
+<% provide(:title, 'Shift') %>
+<h1>確定シフト</h1>
+
+<div>
+  <%= month_calendar events: @fixed_shifts do |date, fixed_shifts| %>
+    <%= link_to date.day, new_fixed_shift_path(date) %>
+    <% fixed_shifts.each do |fixed_shift| %>
+      <div>
+        <% if fixed_shift.fixed_start_time.present? %>
+          <%= link_to fixed_shift.fixed_start_time.strftime("%H:%M"), edit_fixed_shift_path(fixed_shift) %>
+        <% end %>
+        ~
+        <% if fixed_shift.fixed_end_time.present? %>
+          <%= link_to fixed_shift.fixed_end_time.strftime("%H:%M"), edit_fixed_shift_path(fixed_shift) %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

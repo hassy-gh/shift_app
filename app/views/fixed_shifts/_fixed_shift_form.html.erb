@@ -1,0 +1,14 @@
+<%= form_with(model: @fixed_shift, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :start_time, "日付" %>
+  <%= f.date_field :start_time, class: "form-control", value: @day %>
+
+  <%= f.label :fixed_start_time, "開始時間" %>
+  <%= f.time_select :fixed_start_time, { include_blank: true, ignore_date: true, minute_step: 5 }, { class: "form-control" } %>
+  
+  <%= f.label :fixed_end_time, "終了時間" %>
+  <%= f.time_select :fixed_end_time, { include_blank: true, ignore_date: true, minute_step: 5 }, { class: "form-control" } %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
