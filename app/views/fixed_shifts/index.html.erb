@@ -4,15 +4,12 @@
 <div>
   <%= month_calendar events: @fixed_shifts do |date, fixed_shifts| %>
     <%= link_to date.day, new_fixed_shift_path(date) %>
-    <% fixed_shifts.each do |fixed_shift| %>
+    <% if fixed_shifts.any? %>
       <div>
-        <% if fixed_shift.fixed_start_time.present? %>
-          <%= link_to fixed_shift.fixed_start_time.strftime("%H:%M"), edit_fixed_shift_path(fixed_shift) %>
-        <% end %>
-        ~
-        <% if fixed_shift.fixed_end_time.present? %>
-          <%= link_to fixed_shift.fixed_end_time.strftime("%H:%M"), edit_fixed_shift_path(fixed_shift) %>
-        <% end %>
+        <p>
+          出勤人数：<%= fixed_shifts.count %>人
+        </p>
+        <%= link_to "詳細", day_index_fixed_shifts_path(date) %>
       </div>
     <% end %>
   <% end %>

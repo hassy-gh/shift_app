@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :hope_shifts
-  resources :fixed_shifts
+  resources :fixed_shifts do
+    collection do
+      get :day_index
+    end
+  end
 end

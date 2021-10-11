@@ -9,7 +9,7 @@ class HopeShiftsController < ApplicationController
   def new
     @day = params[:format]
     @hope_shift = current_user.hope_shifts.build
-    @hope_shifts = HopeShift.where(start_time: params[:format])
+    @hope_shifts = HopeShift.where(start_time: @day)
   end
   
   def create

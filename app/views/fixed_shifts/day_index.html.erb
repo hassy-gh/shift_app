@@ -1,0 +1,21 @@
+<% provide(:title, @day) %>
+<h1>
+  <%= @day %>
+</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <ul class="fixed_shifts">
+      <% @fixed_shifts.each do |fixed_shift| %>
+        <li>
+          <%= fixed_shift.user.name %>(<%= fixed_shift.user.employee_no %>)
+          <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
+          ~
+          <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
+          <% if current_user.admin? %>
+            <%= link_to "編集", edit_fixed_shift_path(fixed_shift), class: "edit" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

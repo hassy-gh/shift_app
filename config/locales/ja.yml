@@ -3,6 +3,7 @@ ja:
     models:
       user: 従業員
       hope_shift: 希望シフト
+      fixed_shift: 確定シフト
     attributes:
       user:
         name: 名前
@@ -13,6 +14,12 @@ ja:
       hope_shift:
         start_time: 日付
         content_or_hope_time: F（×）または開始時間（終了時間）
+      fixed_shift:
+        start_time: 日付
+        user_id: 従業員
+        user: 従業員
+        fixed_start_time: 開始時間
+        fixed_end_time: 終了時間
     errors:
       models:
         hope_shift:
@@ -21,3 +28,8 @@ ja:
               format: "%{message}"
               taken: この%{attribute}はすでに登録されています
               blank: "%{attribute}を入力してください"
+        fixed_shift:
+          attributes:
+            user_id:
+              format: "%{message}"
+              taken: この従業員はすでに登録されています

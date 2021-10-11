@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_074450) do
+ActiveRecord::Schema.define(version: 2021_10_11_012241) do
 
   create_table "fixed_shifts", force: :cascade do |t|
     t.date "start_time"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2021_10_09_074450) do
     t.time "fixed_end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_fixed_shifts_on_user_id"
   end
 
   create_table "hope_shifts", force: :cascade do |t|
@@ -48,5 +50,6 @@ ActiveRecord::Schema.define(version: 2021_10_09_074450) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "fixed_shifts", "users"
   add_foreign_key "hope_shifts", "users"
 end
