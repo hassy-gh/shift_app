@@ -13,4 +13,5 @@ Rails.application.routes.draw do
       get :day_index
     end
   end
+  resources :groups
 end
