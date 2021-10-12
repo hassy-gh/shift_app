@@ -1,0 +1,17 @@
+<% provide(:title, 'Join') %>
+<h1>グループ参加</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(url: join_path, scope: :joining, local: true) do |f| %>
+    
+      <%= f.label :name, "グループ名" %>
+      <%= f.text_field :name, class: "form-control" %>
+      
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.submit "参加", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
