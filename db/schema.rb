@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_10_12_064023) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.integer "group_id", null: false
+    t.integer "group_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["group_id"], name: "index_users_on_group_id"
   end

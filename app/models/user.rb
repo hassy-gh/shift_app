@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :hope_shifts
   has_many :fixed_shifts
-  belongs_to :group
+  belongs_to :group, optional: true
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :employee_no, presence: true, numericality: { only_integer: true, message: "は半角数字で入力してください" }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  
+
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
