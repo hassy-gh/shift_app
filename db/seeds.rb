@@ -38,7 +38,16 @@ end
 
 # 管理者権限を与える
 groups = Group.find(2, 3, 4, 5)
-groups.each do |g|
-  user = g.users.first
+groups.each do |group|
+  user = group.users.first
   user.update_attribute(:admin, true)
+end
+
+# 希望シフトを生成する
+users = User.order(:created_at).take(50)
+users.each do |user|
+  user.hope_shifts.create!(start_time: "2021-10-01",
+                           content: "",
+                           hope_start_time: "10:00",
+                           hope_end_time: "17:00")
 end
