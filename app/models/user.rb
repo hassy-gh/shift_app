@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX, message: "のフォーマットが正しくありません" },
                     uniqueness: true
-  validates :employee_no, presence: true, numericality: { only_integer: true, message: "は半角数字で入力してください" }
+  validates :employee_no, presence: true, numericality: { only_integer: true, message: "は半角数字で入力してください" }, uniqueness: { scope: :group_id }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
