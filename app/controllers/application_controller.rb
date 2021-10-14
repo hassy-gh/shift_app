@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
         redirect_to(root_url) 
       end
     end
+    
+    def get_group
+      @group = Group.find(current_user.group_id)
+    end
 end

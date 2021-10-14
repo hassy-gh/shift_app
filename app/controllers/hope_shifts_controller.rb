@@ -1,4 +1,5 @@
 class HopeShiftsController < ApplicationController
+  before_action :get_group, only: [:new, :create]
   before_action :logged_in_user, only: [:index, :new, :create, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
 
@@ -9,7 +10,7 @@ class HopeShiftsController < ApplicationController
   def new
     @day = params[:format]
     @hope_shift = current_user.hope_shifts.build
-    @hope_shifts = HopeShift.where(start_time: @day)
+    @hope_shifts = @group.hope_shifts.where(start_time: @day)
   end
   
   def create
@@ -18,7 +19,7 @@ class HopeShiftsController < ApplicationController
       flash[:success] = "登録しました"
       redirect_to hope_shifts_path
     else
-      @hope_shifts = HopeShift.where(start_time: params[:hope_shift][:start_time])
+      @hope_shifts = @group.hope_shifts.where(start_time: params[:hope_shift][:start_time])
       render 'new'
     end
   end

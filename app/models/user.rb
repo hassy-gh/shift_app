@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :hope_shifts
-  has_many :fixed_shifts
+  has_many :hope_shifts, dependent: :destroy
+  has_many :fixed_shifts, dependent: :destroy
   belongs_to :group, optional: true
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX, message: "のフォーマットが正しくありません" },
                     uniqueness: true
-  validates :employee_no, presence: true, numericality: { only_integer: true, message: "は半角数字で入力してください" }, uniqueness: { scope: :group_id }
+  validates :employee_no, presence: true, numericality: { only_integer: true, message: "は半角数字で入力してください" }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
