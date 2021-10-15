@@ -37,17 +37,42 @@ random = Random.new(5)
 end
 
 # 管理者権限を与える
-groups = Group.find(2, 3, 4, 5)
+groups = Group.where(id: 2..5)
 groups.each do |group|
   user = group.users.first
   user.update_attribute(:admin, true)
 end
 
 # 希望シフトを生成する
-users = User.order(:created_at).take(50)
+users = User.all
+users1 = User.where(id: 1..33)
+users2 = User.where(id: 34..66)
+users3 = User.where(id: 67..100)
+d = Date.new(2021, 10, 2)
 users.each do |user|
   user.hope_shifts.create!(start_time: "2021-10-01",
                            content: "",
                            hope_start_time: "10:00",
                            hope_end_time: "17:00")
+end
+30.times do |n|
+  start_time = d + n
+  users1.each do |user|
+    user.hope_shifts.create!(start_time: start_time,
+                            content: "F",
+                            hope_start_time: "",
+                            hope_end_time: "")
+  end
+  users2.each do |user|
+    user.hope_shifts.create!(start_time: start_time,
+                            content: "",
+                            hope_start_time: "17:00",
+                            hope_end_time: "22:00")
+  end
+  users3.each do |user|
+    user.hope_shifts.create!(start_time: start_time,
+                            content: "×",
+                            hope_start_time: "",
+                            hope_end_time: "")
+  end
 end
