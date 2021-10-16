@@ -1,6 +1,6 @@
-<header class="navbar navbar-fixed-top navbar-dark bg-primary">
+<header class="navbar navbar-fixed-top">
   <div class="container">
-    <span id="logo">ShiftApp</span>
+    <%= link_to "ShiftApp", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
@@ -17,9 +17,7 @@
               <li><%= link_to "シフト申請", hope_shifts_path %></li>
               <li><%= link_to "設定", edit_user_path(current_user) %></li>
               <li class="divider"></li>
-              <li>
-                <%= link_to "ログアウト", logout_path, method: :delete %>
-              </li>
+              <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
             </ul>
           </li>
         <% else %>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/join', to: 'joininigs#new'
   post '/join', to: 'joininigs#create'
-  delete '/leave', to: 'joininigs#destroy'
+  patch '/leave', to: 'joininigs#update'
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]

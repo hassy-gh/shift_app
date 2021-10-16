@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     # 管理者かどうか確認
     def admin_user
       unless current_user.admin?
-        flash[:danger] = "管理者用のページです"
+        flash[:danger] = "管理者専用です"
         redirect_to(root_url) 
       end
     end

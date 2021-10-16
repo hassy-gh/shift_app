@@ -1,7 +1,7 @@
 class JoininigsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create]
-  # before_action :employee_no_uniqueness, only: :create
-  
+  before_action :logged_in_user, only: [:new, :create, :update]
+  before_action :admin_user, only: :update
+
   def new
   end
   
@@ -22,16 +22,10 @@ class JoininigsController < ApplicationController
     end
   end
   
-  def destroy
+  def update
+    @user = User.find(params[:format])
+    @user.update_attribute(:group_id, nil)
+    flash[:success] = "#{@user.name}をグループから削除しました"
+    redirect_to users_path
   end
-  
-  private
-  
-    def employee_no_uniqueness
-      @group = Group.find_by(name: params[:joining][:name])
-      unless @group.users.find_by(employee_no: current_user.employee_no).nil?
-        flash[:danger] = "同じ従業員Noがすでにグループに存在します"
-        redirect_to join_path
-      end
-    end
 end
