@@ -106,15 +106,17 @@ header {
       a {
         color: white;
       }
-      .dropdown-toggle {
-        &:hover {
-          .dropdown-menu {
-            display: block;
-          }
-        }
-      }
       .dropdown-menu {
         display: none;
+        left: 0;
+        li {
+          clear: left;
+        }
+      }
+      &:hover {
+        .dropdown-menu {
+          display: block;
+        }
       }
     }
   }
