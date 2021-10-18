@@ -1,9 +1,9 @@
-// @import "bootstrap-sprockets";
-// @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 /* mixins, variables, etc. */
 
-$lightblue: #68A4F5;
+$gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -12,14 +12,9 @@ $lightblue: #68A4F5;
 }
 
 /* universal */
-* {
-  margin: 0;
-  padding: 0;
-}
 
 body {
-  // padding-top: 60px;
-  background-color: $lightblue;
+  padding-top: 60px;
 }
 
 section {
@@ -30,24 +25,11 @@ textarea {
   resize: vertical;
 }
 
-ul {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
 .center {
   text-align: center;
   h1 {
     margin-bottom: 10px;
   }
-}
-
-.container {
-  width: 90%;
-  margin: auto;
 }
 
 /* typography */
@@ -78,63 +60,40 @@ p {
 }
 
 /* header */
+
 header {
-  background-color: $lightblue;
-  height: 70px;
-  .container {
-    height: 100%;
-  }
-  #logo {
-    float: left;
-    margin-right: 10px;
-    font-size: 1.7em;
-    color: white;
-    letter-spacing: -1px;
-    padding-top: 15px;
-    font-weight: bold;
-    &:hover {
+  li {
+    a {
       color: white;
-      text-decoration: none;
-    }
-  }
-  nav {
-    float: right;
-    li {
-      float: left;
-      margin-right: 10px;
-      padding-top: 23px;
-      a {
-        color: white;
-      }
-      .dropdown-menu {
-        display: none;
-        left: 0;
-        li {
-          clear: left;
-        }
-      }
-      &:hover {
-        .dropdown-menu {
-          display: block;
-        }
-      }
     }
   }
 }
 
-
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  letter-spacing: -1px;
+  padding-top: 10px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
 
 /* footer */
 
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  // border-top: 1px solid $gray-medium-light;
-  // color: $gray-light;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
   a {
-    // color: $gray;
+    color: $gray;
     &:hover {
-      // color: $gray-darker;
+      color: $gray-darker;
     }
   }
   small {
@@ -157,7 +116,7 @@ footer {
   float: left;
   width: 100%;
   margin-top: 45px;
-  // @include box_sizing;
+  @include box_sizing;
 }
 
 /* forms */
@@ -166,7 +125,7 @@ input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
-  // @include box_sizing;
+  @include box_sizing;
 }
 
 input {
@@ -182,9 +141,9 @@ input {
 }
 
 .field_with_errors {
-  // @extend .has-error;
+  @extend .has-error;
   .form-control {
-    // color: $state-danger-text;
+    color: $state-danger-text;
   }
 }
 
@@ -210,7 +169,7 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    // border-bottom: 1px solid $gray-lighter;
+    border-bottom: 1px solid $gray-lighter;
     .delete {
       float: right;
     }
@@ -225,7 +184,7 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    // border-bottom: 1px solid $gray-lighter;
+    border-bottom: 1px solid $gray-lighter;
   }
 }
 
@@ -237,7 +196,7 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    // border-bottom: 1px solid $gray-lighter;
+    border-bottom: 1px solid $gray-lighter;
     .edit {
       float: right;
     }
