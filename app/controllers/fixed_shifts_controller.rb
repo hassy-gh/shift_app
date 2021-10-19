@@ -10,12 +10,14 @@ class FixedShiftsController < ApplicationController
   def new
     @day = params[:format]
     @hope_shifts = @group.hope_shifts.where(start_time: @day)
-    @fixed_shift = FixedShift.new
+    # @fixed_shift = FixedShift.new
+    @form = Form::FixedShiftCollection.new
   end
   
   def create
-    @fixed_shift = FixedShift.new(fixed_shift_params)
-    if @fixed_shift.save
+    # @fixed_shift = FixedShift.new(fixed_shift_params)
+    @form = Form::FixedShiftCollection.new(fixed_shift_collection_params)
+    if @form.save
       flash[:success] = "登録しました"
       redirect_to fixed_shifts_path
     else
@@ -50,7 +52,13 @@ class FixedShiftsController < ApplicationController
   
   private
   
-    def fixed_shift_params
-      params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time)
+    # def fixed_shift_params
+    #   params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time)
+    # end
+    
+    def fixed_shift_collection_params
+      params
+        .require(:form_fixed_shift_collection)
+        .permit(fixed_shifts_attributes: :user_id, :start_time, :fixed_start_time, :fixed_end_time)
     end
 end
