@@ -10,11 +10,11 @@ class FixedShiftsController < ApplicationController
   def new
     @day = params[:format]
     @hope_shifts = @group.hope_shifts.where(start_time: @day)
-    count = Group.find(current_user.group_id).users.count
-    count.times do
+    # count = Group.find(current_user.group_id).users.count
+    # count.times do
       # @fixed_shift = FixedShift.new
       @form = Form::FixedShiftCollection.new
-    end
+    # end
   end
   
   def create

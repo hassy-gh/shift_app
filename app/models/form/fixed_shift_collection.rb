@@ -1,5 +1,5 @@
 class Form::FixedShiftCollection < Form::Base
-  FORM_COUNT = Group.find(1).users.count
+  FORM_COUNT = Group.count
   attr_accessor :fixed_shifts
   
   def initialize(attributes = {})
