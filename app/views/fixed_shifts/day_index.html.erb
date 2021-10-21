@@ -1,21 +1,45 @@
 <% provide(:title, @day) %>
-<h1>
-  <%= @day %>
-</h1>
+<h1><%= @day %></h1>
+<h2><%= @group.name %></h2>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <ul class="fixed_shifts">
-      <% @fixed_shifts.each do |fixed_shift| %>
-        <li>
-          <%= fixed_shift.user.name %>(<%= fixed_shift.user.employee_no %>)
-          <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
-          ~
-          <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
-          <% if current_user.admin? %>
-            <%= link_to "編集", edit_fixed_shift_path(fixed_shift), class: "edit" %>
-          <% end %>
-        </li>
+    <table class="table fixed_shifts">
+      <tr>
+        <th>従業員</th><th>希望シフト</th><th>確定シフト</th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.name %>(<%= user.employee_no %>)
+          </td>
+          <td>
+            <% @hope_shifts.each do |hope_shift| %>
+              <% if user.id == hope_shift.user_id %>
+                <% if hope_shift.content.present? %>
+                  <%= hope_shift.content %>
+                <% else %>
+                  <% if hope_shift.hope_start_time.present? %>
+                    <%= hope_shift.hope_start_time.strftime("%H:%M") %>
+                  <% end %>
+                  ~
+                  <% if hope_shift.hope_end_time.present? %>
+                    <%= hope_shift.hope_end_time.strftime("%H:%M") %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% @fixed_shifts.each do |fixed_shift| %>
+              <% if user.id == fixed_shift.user_id %>
+                <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
+                ~
+                <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </ul>
+    </table>
   </div>
 </div>
