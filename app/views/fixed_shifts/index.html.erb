@@ -3,13 +3,12 @@
 
 <div>
   <%= month_calendar events: @fixed_shifts do |date, fixed_shifts| %>
-    <%= link_to date.day, new_fixed_shift_path(date) %>
+    <%= link_to date.day, day_index_fixed_shifts_path(date) %>
     <% if fixed_shifts.any? %>
       <div>
         <p>
           出勤人数：<%= fixed_shifts.count %>人
         </p>
-        <%= link_to "詳細", day_index_fixed_shifts_path(date) %>
       </div>
     <% end %>
   <% end %>

@@ -10,7 +10,7 @@
       <% @users.each do |user| %>
         <tr>
           <td>
-            <%= user.name %>(<%= user.employee_no %>)
+            <%= link_to "#{user.name}(#{user.employee_no})", new_fixed_shift_path(format: @day, id: user.id) %>
           </td>
           <td>
             <% @hope_shifts.each do |hope_shift| %>
@@ -35,6 +35,7 @@
                 <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
                 ~
                 <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
+                <%= link_to "編集", edit_fixed_shift_path(fixed_shift) %>
               <% end %>
             <% end %>
           </td>

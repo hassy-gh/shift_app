@@ -5,7 +5,7 @@
   <%= f.date_field :start_time, readonly: true, class: "form-control", value: @day %>
 
   <%= f.label :user_id, "従業員" %>
-  <%= f.select :user_id, @hope_shifts.all.collect{ |h| [h.user.name, h.user.id] }, { prompt: "従業員を選んでください" }, { class: "form-control" } %>
+  <%= f.select :user_id, @group.users.collect{ |user| [user.name, user.id] }, {}, { readonly: @user, readonly: true, class: "form-control" } %>
 
   <%= f.label :fixed_start_time, "開始時間" %>
   <%= f.time_select :fixed_start_time, { include_blank: true, ignore_date: true, minute_step: 5 }, { class: "form-control" } %>
