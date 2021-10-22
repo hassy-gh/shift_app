@@ -1,11 +1,12 @@
 <%= form_with(model: @fixed_shift, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :start_time, "日付" %>
-  <%= f.date_field :start_time, readonly: true, class: "form-control", value: @day %>
+  <%= f.hidden_field :start_time, value: @day %>
+  
+  <%= f.hidden_field :user_id, value: @user %>
 
-  <%= f.label :user_id, "従業員" %>
-  <%= f.select :user_id, @group.users.collect{ |user| [user.name, user.id] }, {}, { readonly: @user, readonly: true, class: "form-control" } %>
+  <%= f.label :absence, "欠勤" %>
+  <%= f.check_box :absence %><br>
 
   <%= f.label :fixed_start_time, "開始時間" %>
   <%= f.time_select :fixed_start_time, { include_blank: true, ignore_date: true, minute_step: 5 }, { class: "form-control" } %>

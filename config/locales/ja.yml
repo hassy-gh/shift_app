@@ -21,6 +21,7 @@ ja:
         user: 従業員
         fixed_start_time: 開始時間
         fixed_end_time: 終了時間
+        absence_or_fixed_time: 欠勤または開始・終了時間
       group:
         name: グループ名
         password: パスワード

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_12_064023) do
+ActiveRecord::Schema.define(version: 2021_10_22_075712) do
 
   create_table "fixed_shifts", force: :cascade do |t|
     t.date "start_time"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_10_12_064023) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.boolean "absence", default: false, null: false
     t.index ["user_id"], name: "index_fixed_shifts_on_user_id"
   end
 

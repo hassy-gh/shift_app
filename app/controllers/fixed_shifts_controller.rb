@@ -9,7 +9,7 @@ class FixedShiftsController < ApplicationController
   
   def new
     @day = params[:format]
-    @user = @group.users.find(params[:id])
+    @user = @group.users.find(params[:id]).id
     @fixed_shift = FixedShift.new
   end
   
@@ -17,24 +17,28 @@ class FixedShiftsController < ApplicationController
     @fixed_shift = FixedShift.new(fixed_shift_params)
     if @fixed_shift.save
       flash[:success] = "登録しました"
-      redirect_to day_index_fixed_shifts_path
+      redirect_to day_index_fixed_shifts_path(params[:fixed_shift][:start_time])
     else
-      render 'new'
+      @day = params[:fixed_shift][:start_time]
+      @user = params[:fixed_shift][:user_id]
+      render "new"
     end
   end
   
   def edit
     @fixed_shift = FixedShift.find(params[:id])
-    @hope_shifts = @group.hope_shifts.where(start_time: @fixed_shift.start_time)
+    @day = @fixed_shift.start_time
+    @user = @fixed_shift.user_id
   end
   
   def update
     @fixed_shift = FixedShift.find(params[:id])
     if @fixed_shift.update(fixed_shift_params)
       flash[:success] = "変更しました"
-      redirect_to fixed_shifts_path
+      redirect_to day_index_fixed_shifts_path(params[:fixed_shift][:start_time])
     else
-      @hope_shifts = @group.hope_shifts.where(start_time: params[:fixed_shift][:start_time])
+      @day = @fixed_shift.start_time
+      @user = @fixed_shift.user_id
       render 'edit'
     end
   end
@@ -52,6 +56,6 @@ class FixedShiftsController < ApplicationController
   private
   
     def fixed_shift_params
-      params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time)
+      params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time, :absence)
     end
 end

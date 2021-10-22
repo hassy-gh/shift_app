@@ -156,7 +156,7 @@ input {
   }
 }
 
-#session_remember_me {
+#session_remember_me, #fixed_shift_absence {
   width: auto;
   margin-left: 0;
 }
@@ -190,15 +190,15 @@ input {
 
 /* Fixed shifts index */
 
-.fixed_shifts {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-    .edit {
-      float: right;
-    }
-  }
-}
+// .fixed_shifts {
+//   list-style: none;
+//   margin: 0;
+//   li {
+//     overflow: auto;
+//     padding: 10px 0;
+//     border-bottom: 1px solid $gray-lighter;
+//     .edit {
+//       float: right;
+//     }
+//   }
+// }
