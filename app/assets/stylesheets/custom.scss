@@ -202,3 +202,17 @@ input {
 //     }
 //   }
 // }
+
+/* Simple calendar */
+
+.prev-month {
+  
+    display: none;
+  
+}
+
+.next-month {
+  a {
+    display: none;
+  }
+}
