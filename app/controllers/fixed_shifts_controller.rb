@@ -58,4 +58,14 @@ class FixedShiftsController < ApplicationController
     def fixed_shift_params
       params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time, :absence)
     end
+    
+    class SimpleCalendar::CurrentMonthCalendar < SimpleCalendar::MonthCalendar
+      private
+      
+        def date_range
+          beginning = start_date.beginning_of_month
+          ending    = start_date.end_of_month
+          (beginning..ending).to_a
+        end
+    end
 end

@@ -8,7 +8,15 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <% date_range.each_slice(31) do |week| %>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
@@ -18,13 +26,8 @@
               <% end %>
             <% end %>
           <% end %>
-        <% end %>
-      </tr>
-      
-    </thead>
-
-    <tbody>
-      
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

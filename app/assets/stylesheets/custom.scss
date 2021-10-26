@@ -206,13 +206,19 @@ input {
 /* Simple calendar */
 
 .prev-month {
-  
+  a {
     display: none;
-  
+  }
 }
 
 .next-month {
   a {
     display: none;
+  }
+}
+
+.current_month_calendar{
+  .day {
+    height: 0;
   }
 }

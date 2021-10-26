@@ -1,9 +1,6 @@
 <% provide(:title, 'Shift') %>
 <h1>シフト作成</h1>
 
-<div>
-  <%= month_calendar events: @fixed_shifts do |date, fixed_shifts| %>
-    <%= link_to date.day, day_index_fixed_shifts_path(date) %>
-    
-  <% end %>
-</div>
+<%= SimpleCalendar::CurrentMonthCalendar.new(self, {}).render do |date| %>
+  <%= link_to date.day, day_index_fixed_shifts_path(date) %>
+<% end %>
