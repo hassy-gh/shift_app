@@ -1,6 +1,6 @@
 <div class="simple-calendar current_month_calendar">
   <div class="calendar-heading center">
-    <%= link_to t('simple_calendar.previous', default: '前月'), calendar.url_for_previous_view  %>
+    <%= link_to t('simple_calendar.previous', default: '前月'), calendar.url_for_previous_view %>
     <span class="calendar-title"><%= start_date.year %> <%= t('date.month_names')[start_date.month] %></span>
     <%= link_to t('simple_calendar.next', default: '次月'), calendar.url_for_next_view %>
   </div>
