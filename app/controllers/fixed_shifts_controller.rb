@@ -1,5 +1,6 @@
 class FixedShiftsController < ApplicationController
   before_action :get_group, only: [:index, :new, :create, :edit, :update, :day_index]
+  before_action :get_fixed_shift, only: [:edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :admin_user, only: [:index, :new, :create, :edit, :update, :destroy]
 
@@ -26,13 +27,11 @@ class FixedShiftsController < ApplicationController
   end
   
   def edit
-    @fixed_shift = FixedShift.find(params[:id])
     @day = @fixed_shift.start_time
     @user = @fixed_shift.user_id
   end
   
   def update
-    @fixed_shift = FixedShift.find(params[:id])
     if @fixed_shift.update(fixed_shift_params)
       flash[:success] = "変更しました"
       redirect_to day_index_fixed_shifts_path(params[:fixed_shift][:start_time])
@@ -44,6 +43,9 @@ class FixedShiftsController < ApplicationController
   end
   
   def destroy
+    @fixed_shift.destroy
+    flash[:success] = "削除しました"
+    redirect_to day_index_fixed_shifts_path(@fixed_shift.start_time)
   end
   
   def day_index

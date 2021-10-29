@@ -1,5 +1,6 @@
 class HopeShiftsController < ApplicationController
-  before_action :get_group, only: [:new, :create]
+  before_action :get_group, only: [:new, :create, :correct_user]
+  before_action :get_hope_shift, only: [:edit, :update]
   before_action :logged_in_user, only: [:index, :new, :create, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
 
@@ -25,11 +26,9 @@ class HopeShiftsController < ApplicationController
   end
   
   def edit
-    @hope_shift = HopeShift.find(params[:id])
   end
   
   def update
-    @hope_shift = HopeShift.find(params[:id])
     if @hope_shift.update(hope_shift_params)
       flash[:success] = "変更しました"
       redirect_to hope_shifts_path
@@ -48,7 +47,6 @@ class HopeShiftsController < ApplicationController
     
     # 正しいユーザーか確認
     def correct_user
-      @hope_shift = HopeShift.find(params[:id])
       unless current_user.id == @hope_shift.user.id
         flash[:danger] = "正しいユーザーではありません"
         redirect_to(current_user)

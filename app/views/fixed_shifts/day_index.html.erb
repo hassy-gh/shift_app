@@ -52,6 +52,9 @@
               <% if user.fixed_shifts.find_by(start_time: @day).present? %>
                 <% fixed_shift = user.fixed_shifts.find_by(start_time: @day) %>
                 <%= link_to "編集", edit_fixed_shift_path(fixed_shift), class: "text-warning" %>
+                /
+                <%= link_to "削除", fixed_shift_path(fixed_shift), class: "text-danger", method: :delete,
+                                    data: { confirm: "本当に削除しますか？" } %>
               <% else %>
                 <%= link_to "登録", new_fixed_shift_path(format: @day, id: user.id), class: "text-primary" %>
               <% end %>

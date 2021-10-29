@@ -22,7 +22,23 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    # ユーザーを取得する
+    def get_user
+      @user = User.find(params[:id])
+    end
+    
+    # グループを取得する
     def get_group
       @group = Group.find(current_user.group_id)
+    end
+    
+    # 希望シフトを取得する
+    def get_hope_shift
+      @hope_shift = HopeShift.find(params[:id])
+    end
+    
+    # 確定シフトを取得する
+    def get_fixed_shift
+      @fixed_shift = FixedShift.find(params[:id])
     end
 end

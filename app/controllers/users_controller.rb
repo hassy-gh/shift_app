@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
+  before_action :get_user, only: [:show, :edit, :update, :destroy, :correct_user]
+  before_action :get_group, only: :index
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update]
   before_action :admin_user, only: [:index, :destroy]
   
   def index
-    @group = Group.find(current_user.group_id)
     @users = @group.users.where(activated: true).paginate(page: params[:page])
   end
   
   def show
-    @user = User.find(params[:id])
     @fixed_shifts = @user.fixed_shifts.all
     redirect_to root_url and return unless @user.activated?
   end
@@ -30,11 +30,9 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "変更を保存しました"
       redirect_to @user
@@ -44,7 +42,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = "削除しました"
     redirect_to users_url
   end
@@ -52,14 +50,14 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :employee_no, :password, :password_confirmation)
+      params.require(:user)
+      .permit(:name, :email, :employee_no, :password, :password_confirmation)
     end
     
     # beforeアクション
     
     # 正しいユーザーかどうか確認
     def correct_user
-      @user = User.find(params[:id])
       unless current_user?(@user)
         flash[:danger] = "正しいユーザーではありません"
         redirect_to(current_user)
