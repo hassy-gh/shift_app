@@ -18,5 +18,5 @@ Rails.application.routes.draw do
       get :day_index
     end
   end
-  resources :groups
+  resources :groups, only: [:new, :create, :edit, :update]
 end
