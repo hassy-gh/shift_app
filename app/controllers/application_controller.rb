@@ -41,4 +41,12 @@ class ApplicationController < ActionController::Base
     def get_fixed_shift
       @fixed_shift = FixedShift.find(params[:id])
     end
+    
+    # グループに参加していないか確認する
+    def no_join_user
+      unless current_user.group.nil?
+        flash[:danger] = "すでにグループに参加しています"
+        redirect_to root_url
+      end
+    end
 end

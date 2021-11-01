@@ -1,6 +1,7 @@
 class JoininigsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :update]
   before_action :admin_user, only: :update
+  before_action :no_join_user, only: [:new, :create]
 
   def new
   end

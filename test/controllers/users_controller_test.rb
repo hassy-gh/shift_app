@@ -17,6 +17,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
   
+  test "should redirect show when not logged in" do
+    get user_path(@user)
+    assert_redirected_to login_url
+  end
+  
   test "should redirect edit when not logged in" do
     get edit_user_path(@user)
     assert_not flash.empty?
@@ -41,11 +46,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @other_user.reload.admin?
   end
   
+  test "should redirect show when logged in wrong user" do
+    log_in_as(@other_user)
+    get user_path(@user)
+    assert_not flash.empty?
+    assert_redirected_to @other_user
+  end
+  
   test "should redirect edit when logged in wrong user" do
     log_in_as(@other_user)
     get edit_user_path(@user)
     assert_not flash.empty?
-    assert_redirected_to root_url
+    assert_redirected_to @other_user
   end
 
   test "should redirect update when logged in wrong user" do
@@ -54,7 +66,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                       email: @user.email,
                                       employee_no: @user.employee_no } }
     assert_not flash.empty?
-    assert_redirected_to root_url
+    assert_redirected_to @other_user
   end
   
   test "should redirect destroy when not logged in" do

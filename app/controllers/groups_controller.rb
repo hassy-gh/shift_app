@@ -28,12 +28,4 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:name, :password, :password_confirmation)
     end
-    
-    # beforeアクション
-    def no_join_user
-      unless current_user.group.nil?
-        flash[:danger] = "すでにグループに参加しています"
-        redirect_to root_url
-      end
-    end
 end
