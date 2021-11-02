@@ -4,6 +4,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   
   def setup
     ActionMailer::Base.deliveries.clear
+    @group = groups(:superdry)
   end
   
   test "invalid signup information" do
@@ -47,5 +48,17 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'static_pages/selection'
     assert is_logged_in?
+    # すでに有効化されている場合
+    # グループに参加していない場合
+    get edit_account_activation_path(user.activation_token, email: user.email)
+    assert_not flash.empty?
+    assert_redirected_to selection_path
+    # グループに参加している場合
+    post join_path, params: { joining: { name: @group.name,
+                                          password: "password",
+                                          password_confirmation: "password" } }
+    get edit_account_activation_path(user.activation_token, email: user.email)
+    assert_not flash.empty?
+    assert_redirected_to user
   end
 end

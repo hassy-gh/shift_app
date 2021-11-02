@@ -5,6 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
     @other_user = users(:archer)
+    @no_join = users(:lana)
   end
   
   test "should get new" do
@@ -12,28 +13,44 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   
-  test "should redirect index when not logged in" do
+  test "should redirect index when not logged in/not joined group" do
     get users_path
     assert_redirected_to login_url
+    log_in_as(@no_join)
+    get users_path
+    assert_redirected_to selection_path
   end
   
-  test "should redirect show when not logged in" do
+  test "should redirect show when not logged in/not joined group" do
     get user_path(@user)
     assert_redirected_to login_url
+    log_in_as(@no_join)
+    get user_path(@user)
+    assert_redirected_to selection_path
   end
   
-  test "should redirect edit when not logged in" do
+  test "should redirect edit when not logged in/not joined group" do
     get edit_user_path(@user)
     assert_not flash.empty?
     assert_redirected_to login_url
+    log_in_as(@no_join)
+    get edit_user_path(@user)
+    assert_not flash.empty?
+    assert_redirected_to selection_path
   end
   
-  test "should redirect update when not logged in" do
+  test "should redirect update when not logged in/not joined group" do
     patch user_path(@user), params: { user: { name: @user.name,
                                       email: @user.email,
                                       employee_no: @user.employee_no } }
     assert_not flash.empty?
     assert_redirected_to login_url
+    log_in_as(@no_join)
+    patch user_path(@user), params: { user: { name: @user.name,
+                                      email: @user.email,
+                                      employee_no: @user.employee_no } }
+    assert_not flash.empty?
+    assert_redirected_to selection_path
   end
   
   test "should not allow the admin attribute to be edited via the web" do

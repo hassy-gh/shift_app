@@ -1,7 +1,8 @@
 class HopeShiftsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :new, :create, :edit, :update]
-  before_action :get_group, only: [:new, :create, :correct_user]
-  before_action :get_hope_shift, only: [:edit, :update]
+  before_action :logged_in_user
+  before_action :no_join_user
+  before_action :get_group, only: [:new, :create]
+  before_action :get_hope_shift, only: [:edit, :update, :correct_user]
   before_action :correct_user, only: [:edit, :update]
 
   def index

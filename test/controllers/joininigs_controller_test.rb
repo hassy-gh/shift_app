@@ -26,9 +26,12 @@ class JoininigsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
   
-  test "should redirect update when not logged in" do
+  test "should redirect update when not logged in/not joined group" do
     patch leave_path
     assert_redirected_to login_url
+    log_in_as(@non_joined)
+    patch leave_path
+    assert_redirected_to selection_path
   end
   
   test "should redirect update when logged in as a non-admin" do

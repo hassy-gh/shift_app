@@ -5,7 +5,9 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
     @admin = users(:michael)
     @non_admin = users(:archer)
+    @other_group = users(:lana)
     @non_activated = users(:non_activated)
+    @group = groups(:superdry)
   end
   
   test "index as admin including pagination and delete links" do
@@ -14,21 +16,22 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     follow_redirect!
     get users_path
     assert_template 'users/index'
-    assert_select 'a[href=?]', user_path(@non_activated), count: 0
+    assert_no_match @non_activated.name, response.body
+    assert_no_match @other_group.name, response.body
     assert flash.empty?
     assert_select 'div.pagination'
-    first_page_of_users = User.paginate(page: 1)
+    first_page_of_users = @group.users.paginate(page: 1)
     first_page_of_users.each do |user|
-      assert_select 'a[href=?]', user_path(user), text: "#{user.name}(#{user.employee_no})"
+      assert_match "#{user.name}(#{user.employee_no})", response.body
       unless user == @admin
-        assert_select 'a[href=?]', user_path(user), text: '削除'
+        assert_select 'a[href=?]', leave_path(format: user.id), text: '削除'
       end
     end
-    assert_difference 'User.count', -1 do
-      delete user_path(@non_admin)
+    assert_difference '@group.users.count', -1 do
+      patch leave_path(format: @non_admin.id)
     end
     assert_not flash.empty?
     get user_path(@non_activated)
-    assert_redirected_to root_url
+    assert_redirected_to @admin
   end
 end

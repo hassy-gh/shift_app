@@ -41,7 +41,8 @@ class PasswordResetsController < ApplicationController
     def user_params
       params.require(:user).permit(:password, :password_confirmation)
     end
-  
+    
+    # ユーザーを取得する
     def get_user
       @user = User.find_by(email: params[:email])
     end
