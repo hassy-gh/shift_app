@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class JoininigsControllerTest < ActionDispatch::IntegrationTest
+class JoiningsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
     @other_user = users(:archer)
