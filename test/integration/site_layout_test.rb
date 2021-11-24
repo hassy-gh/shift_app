@@ -5,6 +5,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
   def setup
     @admin = users(:michael)
     @non_admin = users(:archer)
+    @group = groups(:superdry)
   end
   
   test "layout links" do
@@ -21,7 +22,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
     assert_select "a[href=?]", user_path(@admin), count: 1
     assert_select "a[href=?]", users_path, count: 1
-    assert_select "a[href=?]", fixed_shifts_path, count: 1
+    assert_select "a[href=?]", fixed_shifts_path, count: 2
+    assert_select "a[href=?]", edit_group_path(@group), count: 1
     assert_select "a[href=?]", hope_shifts_path, count: 1
     assert_select "a[href=?]", edit_user_path(@admin), count: 1
     assert_select "a[href=?]", logout_path, count: 1
@@ -33,6 +35,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'users/show'
     assert_select "a[href=?]", user_path(@non_admin), count: 1
+    assert_select "a[href=?]", fixed_shifts_path, count: 1
     assert_select "a[href=?]", hope_shifts_path, count: 1
     assert_select "a[href=?]", edit_user_path(@non_admin), count: 1
     assert_select "a[href=?]", logout_path, count: 1

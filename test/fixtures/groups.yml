@@ -1,3 +1,7 @@
 superdry:
   name: superdry
   password_digest: <%= User.digest('password') %>
+  
+yakko:
+  name: yakko
+  password_digest: <%= User.digest('password') %>

@@ -77,13 +77,6 @@ class FixedShiftsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to selection_path
   end
   
-  test "should redirect index when not admin" do
-    log_in_as(@other_user)
-    get fixed_shifts_path
-    assert_not flash.empty?
-    assert_redirected_to root_url
-  end
-  
   test "should redirect new when not admin" do
     log_in_as(@other_user)
     get new_fixed_shift_path

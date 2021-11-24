@@ -3,7 +3,7 @@ class FixedShiftsController < ApplicationController
   before_action :no_join_user
   before_action :get_group, only: [:index, :new, :create, :edit, :update, :day_index]
   before_action :get_fixed_shift, only: [:edit, :update, :destroy]
-  before_action :admin_user, only: [:index, :new, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @fixed_shifts = @group.fixed_shifts.all

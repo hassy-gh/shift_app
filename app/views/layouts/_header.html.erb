@@ -16,7 +16,10 @@
               <% if current_user.admin? %>
                 <li><%= link_to "メンバー", users_path %></li>
                 <li><%= link_to "シフト作成", fixed_shifts_path %></li>
+                <li><%= link_to "グループ編集", edit_group_path(current_user.group) %></li>
+                <li class="divider"></li>
               <% end %>
+              <li><%= link_to "シフト表", fixed_shifts_path %></li>
               <li><%= link_to "シフト申請", hope_shifts_path %></li>
               <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
               <li class="divider"></li>
