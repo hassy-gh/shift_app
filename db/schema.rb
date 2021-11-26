@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_075712) do
+ActiveRecord::Schema.define(version: 2021_11_26_081408) do
 
   create_table "fixed_shifts", force: :cascade do |t|
     t.date "start_time"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_075712) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.integer "group_id"
+    t.boolean "join_group", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["group_id"], name: "index_users_on_group_id"
   end

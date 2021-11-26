@@ -16,7 +16,8 @@ User.create!(name:  "Example User",
              admin: true,
              activated: true,
              activated_at: Time.zone.now,
-             group_id: 1)
+             group_id: 1,
+             join_group: true)
 
 # 追加のユーザーをまとめて生成する
 random = Random.new(5)
@@ -33,7 +34,8 @@ random = Random.new(5)
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now,
-               group_id: group_id)
+               group_id: group_id,
+               join_group: true)
 end
 
 # 管理者権限を与える

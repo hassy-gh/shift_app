@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      current_user.update_columns(group_id: @group.id, admin: true)
+      current_user.update_columns(group_id: @group.id, admin: true, join_group: true)
       flash[:success] = "グループを作成しました"
       redirect_to root_url
     else
