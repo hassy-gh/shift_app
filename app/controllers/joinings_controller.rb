@@ -1,7 +1,7 @@
 class JoiningsController < ApplicationController
   before_action :logged_in_user
   before_action :no_join_user, only: :update
-  before_action :correct_user, only: :update, unless: -> { current_user.admin? }
+  before_action :correct_user, only: [:update, :confirm, :destroy], unless: -> { current_user.admin? }
   before_action :join_user, only: [:new, :create]
 
   def new
@@ -27,8 +27,17 @@ class JoiningsController < ApplicationController
   def update
     @user = User.find(params[:format])
     @user.update_columns(group_id: nil, join_group: false)
-    # @user.hope_shifts
-    # @user.fixed_shifts
+    redirect_to destroy_confirm_path(@user)
+  end
+  
+  def confirm
+    @user = User.find(params[:format])
+  end
+  
+  def destroy
+    @user = User.find(params[:format])
+    @user.hope_shifts.destroy_all
+    @user.fixed_shifts.destroy_all
     if current_user.admin?
       flash[:success] = "#{@user.name}を退会させました"
       redirect_to users_path

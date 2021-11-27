@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/join', to: 'joinings#new'
+  get '/destroy_confirm', to: 'joinings#confirm'
   post '/join', to: 'joinings#create'
   patch '/leave', to: 'joinings#update'
+  delete '/destroy_confirm', to: 'joinings#destroy'
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
