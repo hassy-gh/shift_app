@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :fixed_shifts do
     collection do
       get :day_index
+      post :line_notify
     end
   end
   resources :groups, only: [:new, :create, :edit, :update]

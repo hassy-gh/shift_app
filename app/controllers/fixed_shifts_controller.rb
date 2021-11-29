@@ -3,10 +3,17 @@ class FixedShiftsController < ApplicationController
   before_action :no_join_user
   before_action :get_group, only: [:index, :new, :create, :edit, :update, :day_index]
   before_action :get_fixed_shift, only: [:edit, :update, :destroy]
-  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :line_notify]
 
   def index
     @fixed_shifts = @group.fixed_shifts.all
+  end
+  
+  def line_notify
+    line = Line.new
+    line.send("シフトが確定しました！ https://shift-app-2021.herokuapp.com/fixed_shifts")
+    flash[:success] = "LINEに通知しました"
+    redirect_to fixed_shifts_path
   end
   
   def new
@@ -62,6 +69,7 @@ class FixedShiftsController < ApplicationController
       params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time, :absence)
     end
     
+    # カレンダーの範囲
     class SimpleCalendar::CurrentMonthCalendar < SimpleCalendar::MonthCalendar
       private
       
@@ -70,5 +78,28 @@ class FixedShiftsController < ApplicationController
           ending    = start_date.end_of_month
           (beginning..ending).to_a
         end
+    end
+    
+    require 'net/http'
+    require 'uri'
+    
+    # LINEで通知する
+    class Line
+      TOKEN = "9XvCN3N3DLTyLpGV3mpmknTaVqHtS24mof6cxYW1jzE"
+      URI = URI.parse("https://notify-api.line.me/api/notify")
+    
+      def make_request(msg)
+        request = Net::HTTP::Post.new(URI)
+        request["Authorization"] = "Bearer #{TOKEN}"
+        request.set_form_data(message: msg)
+        request
+      end
+    
+      def send(msg)
+        request = make_request(msg)
+        response = Net::HTTP.start(URI.hostname, URI.port, use_ssl: URI.scheme == "https") do |https|
+          https.request(request)
+        end
+      end
     end
 end
