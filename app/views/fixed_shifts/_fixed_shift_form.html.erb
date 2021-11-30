@@ -1,8 +1,10 @@
 <%= form_with(model: @fixed_shift, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
+  <h3><%= @day %></h3>
   <%= f.hidden_field :start_time, value: @day %>
   
+  <h3><%= User.find(@user).name %></h3>
   <%= f.hidden_field :user_id, value: @user %>
 
   <%= f.label :absence, "欠勤" %>
