@@ -1,12 +1,37 @@
 class FixedShiftsController < ApplicationController
   before_action :logged_in_user
   before_action :no_join_user
-  before_action :get_group, only: [:index, :new, :create, :edit, :update, :day_index]
+  before_action :get_group, only: [:index, :new, :create, :edit, :update, :day_index, :toggle_status, :draft]
   before_action :get_fixed_shift, only: [:edit, :update, :destroy]
-  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :line_notify]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :line_notify, :toggle_status, :draft]
 
   def index
+    @fixed_shifts = @group.fixed_shifts.where(status: 1)
+  end
+  
+  def draft
     @fixed_shifts = @group.fixed_shifts.all
+  end
+  
+  def toggle_status
+    if params[:start_date] && params[:end_date]
+      if !params[:start_date].blank? && !params[:end_date].blank?
+        start_date = params[:start_date]
+        end_date = params[:end_date]
+        @fixed_shifts = @group.fixed_shifts.where(status: 0).where(start_time: start_date..end_date)
+        @fixed_shifts.map(&:published!)
+        flash[:success] = "公開しました"
+        redirect_to fixed_shifts_path
+      elsif params[:start_date].blank? || params[:end_date].blank?
+        flash[:danger] = "日付を選択してください"
+        redirect_to draft_fixed_shifts_path
+      end
+    else
+      @fixed_shifts = @group.fixed_shifts.where(status: 0)
+      @fixed_shifts.map(&:published!)
+      flash[:success] = "公開しました"
+      redirect_to fixed_shifts_path
+    end
   end
   
   def line_notify
@@ -66,7 +91,7 @@ class FixedShiftsController < ApplicationController
   private
   
     def fixed_shift_params
-      params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time, :absence)
+      params.require(:fixed_shift).permit(:user_id, :start_time, :fixed_start_time, :fixed_end_time, :absence, :status)
     end
     
     # カレンダーの範囲

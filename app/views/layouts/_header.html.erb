@@ -15,7 +15,7 @@
             <ul class="dropdown-menu">
               <% if current_user.admin? %>
                 <li><%= link_to "メンバー", users_path %></li>
-                <li><%= link_to "シフト作成", fixed_shifts_path %></li>
+                <li><%= link_to "シフト作成", draft_fixed_shifts_path %></li>
                 <li><%= link_to "グループ編集", edit_group_path(current_user.group) %></li>
                 <li class="divider"></li>
               <% end %>

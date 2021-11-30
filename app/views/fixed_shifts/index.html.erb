@@ -1,11 +1,6 @@
-<% provide(:title, 'シフト一覧') %>
-<h1>シフト一覧</h1>
+<% provide(:title, 'シフト表') %>
+<h1>シフト表</h1>
 
 <%= SimpleCalendar::CurrentMonthCalendar.new(self, {}).render do |date| %>
-  <%= link_to date.day, day_index_fixed_shifts_path(date) %>
-<% end %>
-
-<% if current_user.admin? %>
-  <%= link_to "LINEに通知する", line_notify_fixed_shifts_path, class: "btn btn-success",
-                                  method: :post %>
+  <%= date.day %>
 <% end %>

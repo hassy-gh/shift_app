@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   resources :fixed_shifts do
     collection do
       get :day_index
+      get :draft
       post :line_notify
+      patch :toggle_status
+      post :toggle_status
     end
   end
   resources :groups, only: [:new, :create, :edit, :update]

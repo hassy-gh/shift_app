@@ -10,14 +10,8 @@ class FixedShift < ApplicationRecord
   validate :required_either_absence_or_time, unless: -> { errors.any? }
   validates :fixed_start_time, presence: true, unless: :require_validation?
   validates :fixed_end_time, presence: true, unless: :require_validation?
-  # TOKEN = '9XvCN3N3DLTyLpGV3mpmknTaVqHtS24mof6cxYW1jzE'.freeze
-  # URL = 'https://notify-api.line.me/api/notify'.freeze
-  
-  # def send(message)
-  #   Net::Http.start(uri.hostname, uri.port, use_ssl: true) do |https|
-  #     https.request(request)
-  #   end
-  # end
+  enum status: { draft: 0, published: 1 }
+  validates :status, inclusion: { in: FixedShift.statuses.keys }
   
   private
   
@@ -30,15 +24,4 @@ class FixedShift < ApplicationRecord
       return true if errors.any? || absence?
       false
     end
-    
-    # def request
-    #   request = Net::HTTP::Post.new(uri)
-    #   request['Authorization'] = "Bearer #{TOKEN}"
-    #   request.set_form_data(message: message)
-    #   request
-    # end
-    
-    # def uri
-    #   URI.parse(URL)
-    # end
 end

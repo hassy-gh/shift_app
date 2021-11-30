@@ -1,0 +1,23 @@
+<% provide(:title, '仮シフト表') %>
+<h1>仮シフト表</h1>
+
+<%= SimpleCalendar::CurrentMonthCalendar.new(self, {}).render do |date| %>
+  <%= link_to date.day, day_index_fixed_shifts_path(date) %>
+<% end %>
+
+<% if current_user.admin? %>
+  <div>
+    <%= link_to "LINEに通知", line_notify_fixed_shifts_path, class: "btn btn-success",
+                                  method: :post %>
+  </div>
+  
+  <%= link_to "すべて公開", toggle_status_fixed_shifts_path, class: "btn btn-primary",
+                                  method: :patch %>
+  <%= form_with(url: toggle_status_fixed_shifts_path, local: true) do |f| %>
+    <%= f.date_field :start_date, class: "form-control" %>
+    ~
+    <%= f.date_field :end_date, class: "form-control" %>
+    
+    <%= f.submit "日付指定で公開", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

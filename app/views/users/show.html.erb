@@ -8,12 +8,14 @@
     <%= link_to date.day, day_index_fixed_shifts_path(date) %>
     <% fixed_shifts.each do |fixed_shift| %>
       <div>
-        <% if fixed_shift.absence == true %>
-          休み
-        <% else %>
-          <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
-          ~
-          <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
+        <% if fixed_shift.published? %>
+          <% if fixed_shift.absence == true %>
+            休み
+          <% else %>
+            <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
+            ~
+            <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
+          <% end %>
         <% end %>
       </div>
     <% end %>

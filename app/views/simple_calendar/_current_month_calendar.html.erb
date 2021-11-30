@@ -39,12 +39,14 @@
               <%= content_tag :td, class: calendar.td_classes_for(day) do %>
                 <% @fixed_shifts.each do |fixed_shift| %>
                   <% if user.id == fixed_shift.user_id && day == fixed_shift.start_time %>
-                    <% if fixed_shift.absence == true %>
-                      休
-                    <% else %>
-                      <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
-                      <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
-                    <% end %>
+                    <div class="<%= "text-warning" if fixed_shift.draft? %>">
+                      <% if fixed_shift.absence == true %>
+                        休
+                      <% else %>
+                        <%= fixed_shift.fixed_start_time.strftime("%H:%M") %>
+                        <%= fixed_shift.fixed_end_time.strftime("%H:%M") %>
+                      <% end %>
+                    </div>
                   <% end %>
                 <% end %>
               <% end %>
