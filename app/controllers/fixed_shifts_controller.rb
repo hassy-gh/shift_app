@@ -11,7 +11,7 @@ class FixedShiftsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'shift_pdf',
+        render pdf: "#{@group.name}_shift_pdf",
                layout: 'pdf.html',
                encording: 'UTF-8',
                show_as_html: params[:show_as_html].present?

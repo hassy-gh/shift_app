@@ -1,6 +1,7 @@
 <% provide(:title, 'シフト表') %>
 <h1>シフト表</h1>
-
+<%= params[:start_date] %>
 <%= SimpleCalendar::CurrentMonthCalendar.new(self, {}).render do |date| %>
   <%= date.day %>
 <% end %>
+<%= link_to "PDF作成", fixed_shifts_path(format: :pdf, start_date: params[:start_date]), class: "btn btn-primary" %>
