@@ -1,6 +1,5 @@
 <% provide(:title, 'シフト表') %>
 <h1>シフト表</h1>
-<%= params[:start_date] %>
 <%= SimpleCalendar::CurrentMonthCalendar.new(self, {}).render do |date| %>
   <%= date.day %>
 <% end %>

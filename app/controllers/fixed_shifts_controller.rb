@@ -2,6 +2,7 @@ class FixedShiftsController < ApplicationController
   before_action :logged_in_user
   before_action :no_join_user
   before_action :get_group, only: [:index, :new, :create, :edit, :update, :day_index, :toggle_status, :draft]
+  before_action :get_month, only: :index
   before_action :get_fixed_shift, only: [:edit, :update, :destroy]
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy, :line_notify, :toggle_status, :draft]
 
@@ -11,7 +12,7 @@ class FixedShiftsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "#{@group.name}_shift_pdf",
+        render pdf: "#{@group.name}_#{@month}分シフト",
                layout: 'pdf.html',
                encording: 'UTF-8',
                show_as_html: params[:show_as_html].present?
@@ -135,6 +136,16 @@ class FixedShiftsController < ApplicationController
         response = Net::HTTP.start(URI.hostname, URI.port, use_ssl: URI.scheme == "https") do |https|
           https.request(request)
         end
+      end
+    end
+    
+    # beforeアクション
+    
+    def get_month
+      if params[:start_date].present?
+        @month = params[:start_date].to_date.strftime("%Y年%m月")
+      else
+        @month = Date.today.strftime("%Y年%m月")
       end
     end
 end
