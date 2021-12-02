@@ -1,0 +1,5 @@
+<h1>シフト表</h1>
+
+<%= SimpleCalendar::CurrentMonthCalendar.new(self, {}).render do |date| %>
+  <%= date.day %>
+<% end %>

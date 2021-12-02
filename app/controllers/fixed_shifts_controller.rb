@@ -7,6 +7,16 @@ class FixedShiftsController < ApplicationController
 
   def index
     @fixed_shifts = @group.fixed_shifts.where(status: 1)
+    
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'shift_pdf',
+               layout: 'pdf.html',
+               encording: 'UTF-8',
+               show_as_html: params[:show_as_html].present?
+      end
+    end
   end
   
   def draft

@@ -5,6 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '6.0.3'
 # simple-calendar
 gem 'simple_calendar', '~> 2.0'
+# pdf-downroad
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # japanese
 gem 'rails-i18n'
 gem 'mail-iso-2022-jp'
@@ -30,7 +33,6 @@ gem 'jbuilder', '2.9.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
