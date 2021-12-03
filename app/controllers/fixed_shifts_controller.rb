@@ -14,6 +14,9 @@ class FixedShiftsController < ApplicationController
       format.pdf do
         render pdf: "#{@group.name}_#{@month}分シフト",
                layout: 'pdf.html',
+               orientation: 'Landscape',
+               margin: { top: 0,
+                         bottom: 0 },
                encording: 'UTF-8',
                show_as_html: params[:show_as_html].present?
       end
