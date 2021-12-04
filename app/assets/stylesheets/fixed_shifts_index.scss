@@ -3,16 +3,16 @@
     background: none;
   }
   
-  .table {
+  table {
     border-collapse: collapse !important;
     width: 100%;
     margin-bottom: 20px;
-  }
-  .table thead {
-    display: table-header-group;
-    height: 1.1cm;
-  }
-  .table tr {
-    page-break-inside: avoid !important;
+    thead {
+      display: table-header-group;
+      height: 1.1cm;
+    }
+    tr {
+      page-break-inside: avoid !important;
+    }
   }
 }
