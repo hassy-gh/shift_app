@@ -7,7 +7,7 @@ gem 'rails', '6.0.3'
 gem 'simple_calendar', '~> 2.0'
 # pdf-downroad
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary', '0.12.3'
+gem 'wkhtmltopdf-binary'
 # japanese
 gem 'rails-i18n'
 gem 'mail-iso-2022-jp'
