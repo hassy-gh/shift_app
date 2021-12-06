@@ -97,7 +97,7 @@ class FixedShiftsController < ApplicationController
   
   def day_index
     @day = params[:format]
-    @users = @group.users
+    @users = @group.users.order(:employee_no)
     @fixed_shifts = @group.fixed_shifts.where(start_time: @day)
     @hope_shifts = @group.hope_shifts.where(start_time: @day)
   end

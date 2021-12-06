@@ -28,7 +28,7 @@
 
     <tbody>
       <% date_range.each_slice(31) do |week| %>
-        <% @group.users.each do |user| %>
+        <% @group.users.order(:employee_no).each do |user| %>
           <tr>
             <th>
               <%= user.name %>

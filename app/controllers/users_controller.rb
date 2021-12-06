@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:index, :destroy]
   
   def index
-    @users = @group.users.where(activated: true).paginate(page: params[:page])
+    @users = @group.users.where(activated: true).order(:employee_no).paginate(page: params[:page])
   end
   
   def show
