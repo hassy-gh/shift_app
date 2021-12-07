@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+body {
+  padding-top: 0;
+}
+
 .current_month_calendar {
   table {
     border: 1px solid #dddddd;

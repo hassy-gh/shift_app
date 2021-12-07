@@ -21,6 +21,8 @@ gem 'bootstrap-will_paginate', '1.0.0'
 # bootstrap
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+# uglifier
+gem 'uglifier'
 # Use Puma as the app server
 gem 'puma', ' 4.3.6'
 # Use SCSS for stylesheets

@@ -1,4 +1,4 @@
-<header class="navbar navbar-fixed-top navbar-dark bg-primary">
+<header class="navbar fixed-top navbar-dark bg-primary">
   <div class="container">
     <% if logged_in? %>
       <%= link_to "ShiftApp", current_user, id: "logo" %>
@@ -6,35 +6,33 @@
       <%= link_to "ShiftApp", root_path, id: "logo" %>
     <% end %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? && current_user.join_group? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              メニュー <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <% if current_user.admin? %>
-                <li><%= link_to "メンバー", users_path %></li>
-                <li><%= link_to "シフト作成", draft_fixed_shifts_path %></li>
-                <li><%= link_to "グループ編集", edit_group_path(current_user.group) %></li>
-                <li class="divider"></li>
-              <% end %>
-              <li><%= link_to "シフト表", fixed_shifts_path %></li>
-              <li><%= link_to "シフト申請", hope_shifts_path %></li>
-              <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-              <li><%= link_to "グループ退会", leave_path(current_user), class: "delete", method: :patch,
-                                    data: { confirm: "本当に退会しますか？" } %></li>
-            </ul>
-          </li>
-        <% elsif logged_in? && !current_user.join_group? %>
-          <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "新規登録", signup_path %></li>
-          <li><%= link_to "ログイン", login_path %></li>
-        <% end %>
-      </ul>
+      <% if logged_in? && current_user.join_group? %>
+        <div class="dropdown">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            メニュー
+          </button>
+          <ul class="dropdown-menu">
+            <% if current_user.admin? %>
+              <li><%= link_to "メンバー", users_path, class: "dropdown-item" %></li>
+              <li><%= link_to "シフト作成", draft_fixed_shifts_path, class: "dropdown-item" %></li>
+              <li><%= link_to "グループ編集", edit_group_path(current_user.group), class: "dropdown-item" %></li>
+              <li class="dropdown-divider"></li>
+            <% end %>
+            <li><%= link_to "シフト表", fixed_shifts_path, class: "dropdown-item" %></li>
+            <li><%= link_to "シフト申請", hope_shifts_path, class: "dropdown-item" %></li>
+            <li><%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item" %></li>
+            <li class="dropdown-divider"></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>
+            <li><%= link_to "グループ退会", leave_path(current_user), class: "delete dropdown-item", method: :patch,
+                                  data: { confirm: "本当に退会しますか？" } %></li>
+          </ul>
+        </div>
+      <% elsif logged_in? && !current_user.join_group? %>
+        <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "新規登録", signup_path %></li>
+        <li><%= link_to "ログイン", login_path %></li>
+      <% end %>
     </nav>
   </div>
 </header>
