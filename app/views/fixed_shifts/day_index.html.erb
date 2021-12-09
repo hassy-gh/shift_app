@@ -2,7 +2,7 @@
 <h1><%= @day %></h1>
 <h2><%= @group.name %></h2>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-12">
     <table class="table table-striped">
       <tr>
         <th>従業員（No.）</th>
@@ -56,7 +56,7 @@
                 <%= link_to "削除", fixed_shift_path(fixed_shift), class: "text-danger", method: :delete,
                                     data: { confirm: "本当に削除しますか？" } %>
               <% else %>
-                <%= link_to "登録", new_fixed_shift_path(format: @day, id: user.id), class: "text-dark" %>
+                <%= link_to "登録", new_fixed_shift_path(format: @day, id: user.id), class: "text-primary" %>
               <% end %>
             </td>
           <% end %>
