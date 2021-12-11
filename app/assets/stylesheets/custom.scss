@@ -11,9 +11,12 @@ $gray-medium-light: #eaeaea;
 }
 
 /* universal */
+html, body {
+  height: 100%;
+}
 
 body {
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 section {
@@ -61,6 +64,7 @@ p {
 /* header */
 
 header {
+  height: 80px;
   li {
     a {
       color: white;
@@ -217,7 +221,63 @@ input {
 }
 
 .current_month_calendar{
-  .day {
-    height: 0;
+  .my-custom-scrollbar {
+    position: relative;
+    height: 60vh;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+  }
+  .table {
+    th {
+      &:first-child {
+        position: sticky;
+        left: 0;
+        background-color: $light;
+      }
+    }
+    thead {
+      tr {
+        &:first-child {
+          th {
+            position: sticky;
+            background: $light;
+            top: 0;
+            z-index: 1;
+          }
+          .blank {
+            z-index: 3;
+          }
+        }
+        &:last-child {
+          td {
+            position: sticky;
+            top: 3rem;
+            background-color: $light;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        &:hover {
+          th:first-child {
+            background-color: #ececec;
+          }
+        }
+        th {
+          &:first-child {
+            z-index: 2;
+            position: sticky;
+            left: 0;
+            background-color: $light;
+          }
+        }
+      }
+    }
+    .day {
+      height: 0;
+    }
   }
 }

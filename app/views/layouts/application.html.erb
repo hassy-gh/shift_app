@@ -8,12 +8,17 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <div class="container-fluid">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <% end %>
-      <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
+    <div class="row h-100">
+      <div class="d-none d-md-block col-md-3 col-lg-2 bg-light">
+        <%= render 'layouts/sidemenu' %>
+      </div>
+      <div class="container-fluid col-md-9 col-lg-10 pt-5">
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
+        <%= yield %>
+        <!--<%= debug(params) if Rails.env.development? %>-->
+      </div>
     </div>
   </body>
 </html>
