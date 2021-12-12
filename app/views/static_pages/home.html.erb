@@ -6,7 +6,7 @@
   </div>
 <% elsif logged_in? && !current_user.join_group? %>
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 offset-md-3">
       <div class="center">
         <%= link_to "グループを作成", new_group_path, class: "btn btn-primary" %>
       </div>

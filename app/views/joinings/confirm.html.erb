@@ -1,7 +1,7 @@
 <% provide(:title, 'データ削除確認') %>
 <h1>確認</h1>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-6 offset-md-3">
     <div class="center">
       <p>退会するとユーザーに関する希望シフトや確定シフトが削除されますのでご注意ください。</p>
       <%= link_to "確認", destroy_confirm_path(@user), class: "btn btn-lg btn-primary", method: :delete %>
