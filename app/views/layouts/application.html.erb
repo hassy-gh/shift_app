@@ -13,7 +13,7 @@
     <% else %>
       <%= render 'layouts/user_nologgedin' %>
     <% end %>
-    <% if logged_in? && !current_user.join_group? %>
+    <% if logged_in? && current_user.join_group? %>
       <%= render 'layouts/footer' %>
     <% end %>
   </body>
