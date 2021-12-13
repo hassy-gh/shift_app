@@ -1,17 +1,13 @@
-<header class="navbar fixed-top navbar-dark bg-primary">
-  <div class="container">
-    <% if logged_in? %>
-      <%= link_to "ShiftApp", current_user, id: "logo" %>
-    <% else %>
-      <%= link_to "ShiftApp", root_path, id: "logo" %>
-    <% end %>
+<header class="navbar fixed-top bg-primary">
+  <div class="container-fluid">
+    <%= link_to "ShiftApp", root_path, id: "logo" %>
     <nav>
       <% if logged_in? && current_user.join_group? %>
         <div class="dropdown">
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             メニュー
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-menu-right">
             <% if current_user.admin? %>
               <li><%= link_to "メンバー", users_path, class: "dropdown-item" %></li>
               <li><%= link_to "シフト作成", draft_fixed_shifts_path, class: "dropdown-item" %></li>
@@ -20,7 +16,7 @@
             <% end %>
             <li><%= link_to "シフト表", fixed_shifts_path, class: "dropdown-item" %></li>
             <li><%= link_to "シフト申請", hope_shifts_path, class: "dropdown-item" %></li>
-            <li><%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item" %></li>
+            <li><%= link_to "プロフィール", edit_user_path(current_user), class: "dropdown-item" %></li>
             <li class="dropdown-divider"></li>
             <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>
             <li><%= link_to "グループ退会", leave_path(current_user), class: "delete dropdown-item", method: :patch,
