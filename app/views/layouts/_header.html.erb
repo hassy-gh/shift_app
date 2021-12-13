@@ -5,29 +5,25 @@
       <% if logged_in? && current_user.join_group? %>
         <div class="dropdown">
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            メニュー
+            <i class="fas fa-user-circle"></i>
           </button>
           <ul class="dropdown-menu dropdown-menu-right">
             <% if current_user.admin? %>
-              <li><%= link_to "メンバー", users_path, class: "dropdown-item" %></li>
-              <li><%= link_to "シフト作成", draft_fixed_shifts_path, class: "dropdown-item" %></li>
-              <li><%= link_to "グループ編集", edit_group_path(current_user.group), class: "dropdown-item" %></li>
-              <li class="dropdown-divider"></li>
+              <div class="d-block d-md-none">
+                <span class="dropdown-item text-secondary">管理者メニュー</span>
+                <li><%= link_to "メンバー", users_path, class: "dropdown-item" %></li>
+                <li><%= link_to "シフト作成", draft_fixed_shifts_path, class: "dropdown-item" %></li>
+                <li><%= link_to "グループ編集", edit_group_path(current_user.group), class: "dropdown-item" %></li>
+                <li class="dropdown-divider"></li>
+              </div>
             <% end %>
-            <li><%= link_to "シフト表", fixed_shifts_path, class: "dropdown-item" %></li>
-            <li><%= link_to "シフト申請", hope_shifts_path, class: "dropdown-item" %></li>
-            <li><%= link_to "プロフィール", edit_user_path(current_user), class: "dropdown-item" %></li>
-            <li class="dropdown-divider"></li>
             <li><%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %></li>
             <li><%= link_to "グループ退会", leave_path(current_user), class: "delete dropdown-item", method: :patch,
                                   data: { confirm: "本当に退会しますか？" } %></li>
           </ul>
         </div>
       <% elsif logged_in? && !current_user.join_group? %>
-        <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to "新規登録", signup_path %></li>
-        <li><%= link_to "ログイン", login_path %></li>
+        <li><%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary" %></li>
       <% end %>
     </nav>
   </div>

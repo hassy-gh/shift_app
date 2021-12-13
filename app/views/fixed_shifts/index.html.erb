@@ -1,5 +1,5 @@
 <% provide(:title, 'シフト表') %>
-<h1>シフト表</h1>
+<h1><%= @group.name %></h1>
 <%= SimpleCalendar::CurrentMonthCalendar.new(self, {}).render do |date| %>
   <%= date.day %>
 <% end %>

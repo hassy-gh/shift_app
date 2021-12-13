@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :no_logged_in_user, only: [:new, :create]
+  before_action :logged_in_user, only: :destroy
   
   def new
   end
@@ -28,4 +30,16 @@ class SessionsController < ApplicationController
     flash[:info] = "ログアウトしました"
     redirect_to root_url
   end
+  
+  private
+  
+    #beforeアクション
+  
+    # ログインしていないユーザーかどうか確認
+    def no_logged_in_user
+      if logged_in?
+        flash[:danger] = "すでにログインしています。"
+        redirect_to root_url
+      end
+    end
 end

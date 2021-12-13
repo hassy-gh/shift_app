@@ -6,18 +6,18 @@
 <% end %>
 
 <% if current_user.admin? %>
+  <div class="form-inline pt-3">
+    <%= form_with(url: toggle_status_fixed_shifts_path, local: true) do |f| %>
+      <%= f.date_field :start_date, class: "form-control mb-0" %>
+      <span class="mx-3">~</span>
+      <%= f.date_field :end_date, class: "form-control mb-0" %>
+      <%= f.submit "日付指定で公開", class: "btn btn-primary mx-3 mb-0" %>
+    <% end %>
+    <%= link_to "すべて公開", toggle_status_fixed_shifts_path, class: "btn btn-primary",
+                                  method: :patch %>
+  </div>
   <div>
     <%= link_to "LINEに通知", line_notify_fixed_shifts_path, class: "btn btn-success",
                                   method: :post %>
   </div>
-  
-  <%= link_to "すべて公開", toggle_status_fixed_shifts_path, class: "btn btn-primary",
-                                  method: :patch %>
-  <%= form_with(url: toggle_status_fixed_shifts_path, local: true) do |f| %>
-    <%= f.date_field :start_date, class: "form-control" %>
-    ~
-    <%= f.date_field :end_date, class: "form-control" %>
-    
-    <%= f.submit "日付指定で公開", class: "btn btn-primary" %>
-  <% end %>
 <% end %>

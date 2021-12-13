@@ -1,8 +1,10 @@
 <% if logged_in? && current_user.join_group? %>
   <div class="center jumbotron">
     <h1>Welcome to the ShiftApp !</h1>
-    
-    <%= link_to "シフトを申請する", hope_shifts_path, class: "btn btn-lg btn-primary" %>
+    <div class="mt-5">
+      <%= link_to "シフトを申請", hope_shifts_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "シフトを確認", fixed_shifts_path, class: "btn btn-lg btn-primary" %>
+    </div>
   </div>
 <% elsif logged_in? && !current_user.join_group? %>
   <div class="row">
@@ -16,10 +18,14 @@
     </div>
   </div>
 <% else %>
-  <div class="center jumbotron">
-    <h1>Welcome to the ShiftApp !</h1>
-    
-    <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %>
-    <p>新規登録がまだの方は<%= link_to "こちら", signup_path %></p>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="center jumbotron">
+        <h1>Welcome to the ShiftApp !</h1>
+        
+        <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary my-3" %>
+        <p>新規登録がまだの方は<%= link_to "こちら", signup_path %></p>
+      </div>
+    </div>
   </div>
 <% end %>

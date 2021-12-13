@@ -2,18 +2,15 @@
   <div class="nav flex-column position-fixed">
     <%= link_to current_user.name, current_user, class: "nav-link" %>
     <span class="dropdown-divider"></span>
-    <% if current_user.admin? %>
-      <%= link_to "メンバー", users_path, class: "nav-link" %>
-      <%= link_to "シフト作成", draft_fixed_shifts_path, class: "nav-link" %>
-      <%= link_to "グループ編集", edit_group_path(current_user.group), class: "nav-link" %>
-      <span class="dropdown-divider"></span>
-    <% end %>
     <%= link_to "シフト表", fixed_shifts_path, class: "nav-link" %>
     <%= link_to "シフト申請", hope_shifts_path, class: "nav-link" %>
     <%= link_to "プロフィール", edit_user_path(current_user), class: "nav-link" %>
-    <span class="dropdown-divider"></span>
-    <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %>
-    <%= link_to "グループ退会", leave_path(current_user), class: "delete nav-link", method: :patch,
-                          data: { confirm: "本当に退会しますか？" } %>
+    <% if current_user.admin? %>
+      <span class="dropdown-divider"></span>
+      <span class="nav-link text-secondary">管理者メニュー</span>
+      <%= link_to "メンバー", users_path, class: "nav-link" %>
+      <%= link_to "シフト作成", draft_fixed_shifts_path, class: "nav-link" %>
+      <%= link_to "グループ編集", edit_group_path(current_user.group), class: "nav-link" %>
+    <% end %>
   </div>
 <% end %>
