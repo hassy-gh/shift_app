@@ -40,17 +40,17 @@ class FixedShiftsController < ApplicationController
         flash[:danger] = "日付を選択してください"
         redirect_to draft_fixed_shifts_path
       end
-    else
-      @fixed_shifts = @group.fixed_shifts.where(status: 0)
-      @fixed_shifts.map(&:published!)
-      flash[:success] = "公開しました"
-      redirect_to fixed_shifts_path
+    # else
+    #   @fixed_shifts = @group.fixed_shifts.where(status: 0)
+    #   @fixed_shifts.map(&:published!)
+    #   flash[:success] = "公開しました"
+    #   redirect_to fixed_shifts_path
     end
   end
   
   def line_notify
     line = Line.new
-    line.send("シフトが確定しました！ https://shift-app-2021.herokuapp.com/fixed_shifts")
+    line.send("シフトが確定しました！ https://www.shiftapp2021.com/fixed_shifts")
     flash[:success] = "LINEに通知しました"
     redirect_to fixed_shifts_path
   end

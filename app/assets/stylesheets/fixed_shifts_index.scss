@@ -7,6 +7,15 @@ body {
 .current_month_calendar {
   table {
     border: 1px solid #dddddd;
+    tbody {
+      tr {
+        th {
+          &:first-child {
+            background: none !important;
+          }
+        }
+      }
+    }
   }
   .today {
     background: none;
