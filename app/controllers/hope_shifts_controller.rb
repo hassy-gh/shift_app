@@ -16,7 +16,7 @@ class HopeShiftsController < ApplicationController
   end
   
   def create
-    if params[:start_date].present? && [:end_date].blank?
+    if params[:hope_shift][:start_time].present? && (params[:hope_shift][:start_date].nil? && params[:hope_shift][:end_date].nil?)
       @hope_shift = current_user.hope_shifts.build(hope_shift_params)
       if @hope_shift.save
         flash[:success] = "登録しました"
@@ -25,22 +25,30 @@ class HopeShiftsController < ApplicationController
         @day = params[:hope_shift][:start_time]
         render 'new'
       end
-    elsif params[:start_date].present? && params[:end_date].present?
-      dates = (params[:start_date].to_date)..(params[:end_date].to_date)
+    elsif params[:hope_shift][:start_time].nil? && (params[:hope_shift][:start_date].present? && params[:hope_shift][:end_date].present?)
+      dates = (params[:hope_shift][:start_date].to_date)..(params[:hope_shift][:end_date].to_date)
+      before_count = current_user.hope_shifts.count
+      start_time = hope_start_time_join
+      end_time = hope_end_time_join
       dates.each do |date|
-        @hope_shift = current_user.hope_shifts.build(start_date: date,
-                                                     content: params[:content],
-                                                     hope_start_time: params[:hope_start_time],
-                                                     hope_end_time: params[:hope_end_time])
+        @hope_shift = current_user.hope_shifts.build(start_time: date.strftime("%Y-%m-%d"),
+                                                     content: params[:hope_shift][:content],
+                                                     hope_start_time: start_time,
+                                                     hope_end_time: end_time)
+        unless @hope_shift.save
+          @hope_shifts = current_user.hope_shifts.all
+          render 'index'
+          break
+        end
       end
-      if @hope_shift.save
+      if before_count < current_user.hope_shifts.count
         flash[:success] = "登録しました"
         redirect_to hope_shifts_path
-      else
-        render 'index'
       end
-    elsif params[:start_date].blank? && params[:end_date].present?
-      flash[:danger] = "日付を選択してください"
+    elsif params[:hope_shift][:start_time].nil? && (params[:hope_shift][:start_date].blank? || params[:hope_shift][:end_date].blank?)
+      @hope_shifts = current_user.hope_shifts.all
+      @hope_shift = current_user.hope_shifts.build
+      flash.now[:danger] = "日付を選択してください。"
       render 'index'
     end
   end
@@ -62,7 +70,31 @@ class HopeShiftsController < ApplicationController
   private
   
     def hope_shift_params
-      params.require(:hope_shift).permit(:content, :start_time, :end_date, :hope_start_time, :hope_end_time)
+      params.require(:hope_shift).permit(:content, :start_time, :start_date, :end_date, :hope_start_time, :hope_end_time)
+    end
+    
+    def hope_start_time_join
+      time1 = "params[:hope_shift][:hope_start_time(4i)]"
+      time2 = "params[:hope_shift][:hope_start_time(5i)]"
+      if time1.empty? && time2.empty?
+        DateTime.new(2000, 01, 01, 00, 00)
+      elsif time1.present? && time2.empty?
+        DateTime.new(2000, 01, 01, time1.to_i, 00)
+      elsif time1.empty? && time2.present?
+        DateTime.new(2000, 01, 01, 00, time2.to_i)
+      end
+    end
+    
+    def hope_end_time_join
+      time1 = "params[:hope_shift][:hope_end_time(4i)]"
+      time2 = "params[:hope_shift][:hope_end_time(5i)]"
+      if time1.empty? && time2.empty?
+        DateTime.new(2000, 01, 01, 00, 00)
+      elsif time1.present? && time2.empty?
+        DateTime.new(2000, 01, 01, time1.to_i, 00)
+      elsif time1.empty? && time2.present?
+        DateTime.new(2000, 01, 01, 00, time2.to_i)
+      end
     end
     
     # beforeアクション
