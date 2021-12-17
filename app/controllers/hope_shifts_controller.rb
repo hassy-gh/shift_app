@@ -37,6 +37,7 @@ class HopeShiftsController < ApplicationController
                                                      hope_end_time: end_time)
         unless @hope_shift.save
           @hope_shifts = current_user.hope_shifts.all
+          flash.now[:danger] = "正しく入力されていません。"
           render 'index'
           break
         end
@@ -74,26 +75,30 @@ class HopeShiftsController < ApplicationController
     end
     
     def hope_start_time_join
-      time1 = "params[:hope_shift][:hope_start_time(4i)]"
-      time2 = "params[:hope_shift][:hope_start_time(5i)]"
+      time1 = params[:hope_shift][:"hope_start_time(4i)"]
+      time2 = params[:hope_shift][:"hope_start_time(5i)"]
       if time1.empty? && time2.empty?
-        DateTime.new(2000, 01, 01, 00, 00)
+        return
+      elsif time1.present? && time2.present?
+        return "#{time1}:#{time2}"
       elsif time1.present? && time2.empty?
-        DateTime.new(2000, 01, 01, time1.to_i, 00)
+        return "#{time1}:00"
       elsif time1.empty? && time2.present?
-        DateTime.new(2000, 01, 01, 00, time2.to_i)
+        return 
       end
     end
     
     def hope_end_time_join
-      time1 = "params[:hope_shift][:hope_end_time(4i)]"
-      time2 = "params[:hope_shift][:hope_end_time(5i)]"
+      time1 = params[:hope_shift][:"hope_end_time(4i)"]
+      time2 = params[:hope_shift][:"hope_end_time(5i)"]
       if time1.empty? && time2.empty?
-        DateTime.new(2000, 01, 01, 00, 00)
+        return
+      elsif time1.present? && time2.present?
+        return "#{time1}:#{time2}"
       elsif time1.present? && time2.empty?
-        DateTime.new(2000, 01, 01, time1.to_i, 00)
+        return "#{time1}:00"
       elsif time1.empty? && time2.present?
-        DateTime.new(2000, 01, 01, 00, time2.to_i)
+        return 
       end
     end
     
