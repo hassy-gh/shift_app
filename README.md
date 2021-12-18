@@ -63,7 +63,7 @@ https://www.shiftapp2021.com
 ***
 
 ### ER図
-![ER図](./erd.png)
+![ER図](https://user-images.githubusercontent.com/86550539/146630456-85034a4f-be42-48c9-8706-118b61a79eb5.png)
 
 ***
 
