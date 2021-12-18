@@ -63,7 +63,7 @@ https://www.shiftapp2021.com
 ***
 
 ### ER図
-![ER図](./erd.pdf)
+![ER図](https://github.com/hassy-gh/shift_app/files/7738769/erd.pdf)
 
 ***
 
