@@ -8,11 +8,11 @@
 end
 
 # メインのサンプルユーザーを1人作成する
-User.create!(name:  "Example User",
-             email: "example@railstutorial.org",
-             employee_no: 11111,
-             password:              "foobar",
-             password_confirmation: "foobar",
+User.create!(name:  "山田 太郎",
+             email: "example@shiftapp.com",
+             employee_no: 1,
+             password:              "password",
+             password_confirmation: "password",
              admin: true,
              activated: true,
              activated_at: Time.zone.now,

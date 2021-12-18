@@ -20,11 +20,13 @@ ShiftAppは、アルバイト・パートのシフトを管理や作成などを
 ***
 
 ### DEMO
-email: example@shiftapp.com
+名前: 山田 太郎
 
-password: password
+メールアドレス: example@shiftapp.com
 
-従業員No: 123
+パスワード: password
+
+従業員No.: 1
 
 ***
 
@@ -61,6 +63,7 @@ https://www.shiftapp2021.com
 ***
 
 ### ER図
+![ER図](./erd.pdf)
 
 ***
 
@@ -68,6 +71,7 @@ https://www.shiftapp2021.com
 【課題】
 
 * 管理者側の機能が単純すぎる点
+* 処理時間のかかるメソッド
 * 画面遷移が多い点
 * ２つ以上のアルバイトをしている場合の対応
 
