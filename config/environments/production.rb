@@ -69,9 +69,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  host = 'www.shiftapp2021.com'
+  host = 'shiftapp2021.com'
   config.action_mailer.default_url_options = { host: host }
-  config.action_mailer.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
       address:              'smtp.sendgrid.net',
       user_name:            'apikey',
       password:             ENV['SENDGRID_APIKEY'],
