@@ -31,7 +31,7 @@ ShiftAppは、アルバイト・パートのシフトを管理や作成などを
 ***
 
 ### URL
-https://www.shiftapp2021.com
+https://shiftapp2021.com
 
 ***
 
